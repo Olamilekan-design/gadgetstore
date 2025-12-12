@@ -589,7 +589,7 @@ main{padding:8px 0}
         width: 100%;
         gap: 6px;
         padding: 0 10px;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
     }
 
@@ -614,16 +614,16 @@ main{padding:8px 0}
     .main-nav{
         display: flex;
         order: 2;
-        width: calc(100% + 20px);
-        margin: 8px -10px 0 -10px;
-        padding: 6px 10px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        margin: 8px 0 0 0;
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        overflow-x: visible;
         scrollbar-width: none;
-        gap: 0;
+        gap: 4px;
         border-top: 1px solid #f3f4f6;
         background: #fafbfc;
+        justify-content: center;
     }
 
     .main-nav::-webkit-scrollbar{
@@ -646,6 +646,7 @@ main{padding:8px 0}
         gap: 6px;
         flex: 0 0 auto;
         order: 3;
+        display: none;
     }
 
     .utility-icon{

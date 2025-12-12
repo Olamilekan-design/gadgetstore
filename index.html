@@ -26,21 +26,7 @@
               <a href="contact.html" class="nav-item">Contact</a>
             </nav>
 
-            <div class="header-utilities">
-              <details class="mobile-menu">
-                <summary class="menu-button" aria-label="Toggle navigation menu">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </summary>
-                <nav class="mobile-nav">
-                  <a href="index.html">Home</a>
-                  <a href="gadgetstore.html">Store</a>
-                  <a href="about.html">About</a>
-                  <a href="contact.html">Contact</a>
-                </nav>
-              </details>
-            </div>
+            <div class="header-utilities"></div>
           </div>
         </div>
 
@@ -58,39 +44,9 @@
         </div>
       </header>
 
-      <!-- Cart Panel -->
-      <div id="cart-panel" class="cart-panel" role="region" aria-label="Shopping cart">
-        <div class="cart-header">
-          <h2>Shopping Cart</h2>
-          <button class="cart-close" onclick="toggleCart()" aria-label="Close cart">✕</button>
-        </div>
-        <div class="cart-items" id="cart-items">
-          <p class="empty-message">Your cart is empty</p>
-        </div>
-        <div class="cart-footer">
-          <div class="cart-total">
-            <strong>Total: </strong>
-            <span id="cart-total">₦0</span>
-          </div>
-          <button class="btn-checkout" onclick="checkout()">Checkout</button>
-          <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
-        </div>
-      </div>
 
-      <!-- Cart Overlay -->
-      <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
 
-      <!-- Mobile Cart Bar -->
-      <div class="mobile-cart-bar" role="navigation" aria-label="Mobile cart access">
-        <a href="#cart-panel" class="mobile-cart-icon" onclick="toggleCart(event)" aria-label="Shopping cart">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span class="cart-count" id="cart-count">0</span>
-        </a>
-      </div>
+
 
       <main id="main-content">
         <section class="hero" aria-labelledby="hero-title">
@@ -199,115 +155,6 @@
     </div>
     <!-- React header removed: using CSS-only header now -->
     <script>
-      // Cart functionality
-      let cart = JSON.parse(localStorage.getItem('gadgetstore_cart')) || [];
-
-      function updateCartUI() {
-        const cartCount = document.getElementById('cart-count');
-        const cartItemsDiv = document.getElementById('cart-items');
-        const cartTotal = document.getElementById('cart-total');
-
-        cartCount.textContent = cart.length;
-
-        if (cart.length === 0) {
-          cartItemsDiv.innerHTML = '<p class="empty-message">Your cart is empty</p>';
-          cartTotal.textContent = '₦0';
-          return;
-        }
-
-        let total = 0;
-        cartItemsDiv.innerHTML = cart.map((item, index) => {
-          total += item.price * item.qty;
-          return `
-            <div class="cart-item">
-              <div class="cart-item-image">🛍️</div>
-              <div class="cart-item-info">
-                <p class="cart-item-name">${item.name}</p>
-                <p class="cart-item-price">₦${(item.price * item.qty).toLocaleString()}</p>
-                <div class="cart-item-qty">
-                  <span>Qty:</span>
-                  <div class="qty-control">
-                    <button class="qty-btn" onclick="updateQty(${index}, -1)">−</button>
-                    <span>${item.qty}</span>
-                    <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-                  </div>
-                </div>
-              </div>
-              <button class="cart-remove" onclick="removeFromCart(${index})" title="Remove item">✕</button>
-            </div>
-          `;
-        }).join('');
-
-        cartTotal.textContent = '₦' + total.toLocaleString();
-      }
-
-      function addToCart(name, price) {
-        const existingItem = cart.find(item => item.name === name);
-        if (existingItem) {
-          existingItem.qty++;
-        } else {
-          cart.push({ name, price, qty: 1 });
-        }
-        localStorage.setItem('gadgetstore_cart', JSON.stringify(cart));
-        updateCartUI();
-        showNotification(`${name} added to cart!`);
-      }
-
-      function removeFromCart(index) {
-        cart.splice(index, 1);
-        localStorage.setItem('gadgetstore_cart', JSON.stringify(cart));
-        updateCartUI();
-      }
-
-      function updateQty(index, change) {
-        cart[index].qty += change;
-        if (cart[index].qty <= 0) {
-          removeFromCart(index);
-        } else {
-          localStorage.setItem('gadgetstore_cart', JSON.stringify(cart));
-          updateCartUI();
-        }
-      }
-
-      function toggleCart(e) {
-        if (e) e.preventDefault();
-        const panel = document.getElementById('cart-panel');
-        const overlay = document.getElementById('cart-overlay');
-        panel.classList.toggle('open');
-        overlay.classList.toggle('open');
-      }
-
-      function clearCart() {
-        if (confirm('Are you sure you want to clear your cart?')) {
-          cart = [];
-          localStorage.setItem('gadgetstore_cart', JSON.stringify(cart));
-          updateCartUI();
-        }
-      }
-
-      function checkout() {
-        if (cart.length === 0) {
-          alert('Your cart is empty!');
-          return;
-        }
-        alert('Thank you for your order! Total items: ' + cart.length + '\\nProceeding to checkout...');
-        cart = [];
-        localStorage.setItem('gadgetstore_cart', JSON.stringify(cart));
-        updateCartUI();
-        toggleCart();
-      }
-
-      function showNotification(message) {
-        const notif = document.createElement('div');
-        notif.textContent = message;
-        notif.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:white;padding:12px 16px;border-radius:8px;font-weight:500;z-index:2000;animation:slideIn 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,0.15)';
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 3000);
-      }
-
-      // Initialize cart UI on page load
-      document.addEventListener('DOMContentLoaded', updateCartUI);
-
       // Respect user preference for reduced motion: prefer subtle animation
       (function(){
         try{
