@@ -379,21 +379,22 @@ main{padding:8px 0}
     background: transparent;
     border: none;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    border-radius: 10px;
+    gap: 6px;
+    border-radius: 12px;
     transition: all 0.3s ease;
     position: relative;
+    padding: 0;
 }
 
 .menu-button:hover{
     background: #f3f4f6;
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .menu-button:active{
@@ -401,11 +402,12 @@ main{padding:8px 0}
 }
 
 .menu-button span{
-    width: 24px;
-    height: 2.5px;
-    background: #6b7280;
+    width: 28px;
+    height: 3px;
+    background: #0b1220;
     border-radius: 2px;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: block;
 }
 
 .mobile-menu[open] .menu-button span:nth-child(1){
@@ -430,13 +432,13 @@ main{padding:8px 0}
 .mobile-nav{
     position: absolute;
     right: 0;
-    top: 50px;
+    top: 56px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 1.5px solid #e5e7eb;
     border-radius: 14px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     display: none;
-    min-width: 200px;
+    min-width: 220px;
     overflow: hidden;
     animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -448,11 +450,12 @@ main{padding:8px 0}
 
 .mobile-nav a{
     display: block;
-    padding: 12px 16px;
-    color: #6b7280;
+    padding: 14px 18px;
+    color: #0b1220;
     text-decoration: none;
     transition: all 0.3s ease;
     font-weight: 500;
+    font-size: 0.95rem;
     border-left: 4px solid transparent;
     position: relative;
     overflow: hidden;
@@ -783,38 +786,66 @@ main{padding:8px 0}
 
     /* Mobile quick access bar */
     .mobile-quick-access{
-        display: flex;
+        display: none;
     }
 
-    .quick-access-item{
-        flex: 1;
+    /* Mobile cart bar - fixed at bottom */
+    .mobile-cart-bar{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-top: 1.5px solid #e5e7eb;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8px 4px;
-        text-decoration: none;
-        color: #6b7280;
-        font-size: 0.75rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        border-radius: 8px;
-        margin: 0 4px;
+        z-index: 999;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    .quick-access-item:active{
+    .mobile-cart-icon{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #6b7280;
+    }
+
+    .mobile-cart-icon:active{
         background: #f3f4f6;
-        color: var(--accent);
         transform: scale(0.95);
     }
 
-    .quick-access-item svg{
-        width: 24px;
-        height: 24px;
-        margin-bottom: 2px;
+    .mobile-cart-icon svg{
+        width: 28px;
+        height: 28px;
     }
 
-    /* Add bottom margin to content for fixed nav */
+    .mobile-cart-icon .cart-count{
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        background: var(--accent);
+        color: white;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        animation: popIn 0.3s ease;
+    }
+
+    /* Add bottom margin to content for fixed mobile cart bar */
     body {
         padding-bottom: 60px;
     }
