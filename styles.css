@@ -1586,3 +1586,56 @@ header{background:transparent;color:inherit;padding:0;border-bottom:none;box-sha
 
 /* Small utility */
 .muted{color:#6b7280}
+
+/* Portrait-specific fixes: ensure header displays correctly in portrait orientation */
+@media (max-width:480px) and (orientation: portrait) {
+    .site-header{
+        padding-top: 8px;
+        padding-bottom: 8px;
+        min-height: auto;
+    }
+
+    .header-top{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 6px 8px;
+    }
+
+    .header-container{
+        width: 100%;
+        padding: 0 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand-logo{
+        order: 1;
+        text-align: center;
+        flex: 0 1 auto;
+    }
+
+    .main-nav{
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        padding: 6px 8px;
+        overflow: visible;
+        background: transparent;
+        border-top: none;
+    }
+
+    .nav-item{
+        padding: 6px 10px;
+        font-size: 0.95rem;
+        white-space: normal;
+    }
+
+    .header-utilities{ display: none; }
+}
