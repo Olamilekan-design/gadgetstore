@@ -654,7 +654,7 @@ main{padding:8px 0}
         gap: 6px;
         flex: 0 0 auto;
         order: 3;
-        display: none;
+        display: flex;
     }
 
     .utility-icon{
@@ -1645,5 +1645,12 @@ header{background:transparent;color:inherit;padding:0;border-bottom:none;box-sha
         white-space: normal;
     }
 
-    .header-utilities{ display: none; }
+    .header-utilities{
+        display: flex !important;
+        order: 3;
+    }
+
+    .mobile-menu{
+        display: block !important;
+    }
 }
