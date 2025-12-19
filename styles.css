@@ -650,6 +650,25 @@ main{padding:8px 0}
         display: none !important;
     }
 
+    /* Header search button (toggles header-bottom on mobile) */
+    .header-search{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 6px;
+        color: #0b1220;
+    }
+
+    .header-search svg{ width:18px; height:18px; }
+
+    /* When active, show the header-bottom search area */
+    .header-bottom.active{ display: block; }
+
     .header-utilities{
         gap: 6px;
         flex: 0 0 auto;
