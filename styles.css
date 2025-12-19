@@ -371,7 +371,13 @@ main{padding:8px 0}
 /* Mobile menu */
 .mobile-menu{
     position: relative;
-    display: none;
+    display: block;
+}
+
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none !important;
+    }
 }
 
 .menu-button{
