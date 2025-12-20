@@ -548,9 +548,8 @@ main{padding:8px 0}
         display: block;
     }
 
-    /* Remove nav links on mobile: hide both main (inline) nav and the mobile dropdown links */
+    /* Remove inline main nav on mobile; keep mobile dropdown available */
     .main-nav{ display: none !important; }
-    .mobile-nav{ display: none !important; }
 
     .search-bar{
         width: 100%;
@@ -673,6 +672,9 @@ main{padding:8px 0}
     /* When active, show the header-bottom search area */
     .header-bottom.active{ display: block; }
 
+    /* When header-bottom is activated on mobile, show the search bar */
+    .header-bottom.active .search-bar{ display: flex !important; }
+
     .header-utilities{
         gap: 6px;
         flex: 0 0 auto;
@@ -719,8 +721,7 @@ main{padding:8px 0}
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
 
-    /* Ensure mobile dropdown links hidden on smallest screens too */
-    .mobile-nav{ display: none !important; }
+    /* Mobile dropdown links are available via the hamburger; no forced hide here */
 
     .mobile-nav a{
         padding: 10px 12px;
