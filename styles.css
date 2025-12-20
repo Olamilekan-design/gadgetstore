@@ -503,7 +503,7 @@ main{padding:8px 0}
     }
 
     .search-bar{
-        max-width: 350px;
+        display: none !important;
     }
 }
 
@@ -556,6 +556,7 @@ main{padding:8px 0}
         max-width: 100%;
         order: 4;
         margin-top: 8px;
+        display: none !important;
     }
 
     .header-bottom .header-container{
@@ -674,6 +675,32 @@ main{padding:8px 0}
 
     /* When header-bottom is activated on mobile, show the search bar */
     .header-bottom.active .search-bar{ display: flex !important; }
+
+    /* Mobile portrait search filter for products */
+    .mobile-search-filter{
+        display: none;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .mobile-search-filter input{
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+    }
+
+    .mobile-search-filter input:focus{
+        border-color: #3466ff;
+        box-shadow: 0 0 0 3px rgba(52, 102, 255, 0.1);
+    }
+
+    /* Show mobile search filter on portrait phones only */
+    @media (max-width: 480px) and (orientation: portrait){
+        .mobile-search-filter{ display: block; }
+    }
 
     .header-utilities{
         gap: 6px;
