@@ -62,18 +62,34 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Mobile portrait search input for products (real-time filtering)
   var mobileSearchInput = document.getElementById('mobile-search-input');
+  var headerSearchInput = document.getElementById('header-search-input');
+
+  function filterProducts(q){
+    q = (q || '').trim().toLowerCase();
+    var cards = document.querySelectorAll('.product, .product-card');
+    cards.forEach(function(card){
+      var title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+      if(q === ''){
+        card.style.display = '';
+      } else {
+        card.style.display = title.includes(q) ? '' : 'none';
+      }
+    });
+  }
+
   if(mobileSearchInput){
     mobileSearchInput.addEventListener('input', function(e){
-      var q = (e.target.value || '').trim().toLowerCase();
-      var cards = document.querySelectorAll('.product, .product-card');
-      cards.forEach(function(card){
-        var title = (card.querySelector('h3')?.textContent || '').toLowerCase();
-        if(q === ''){
-          card.style.display = '';
-        } else {
-          card.style.display = title.includes(q) ? '' : 'none';
-        }
-      });
+      filterProducts(e.target.value);
+      // Sync header search input
+      if(headerSearchInput) headerSearchInput.value = e.target.value;
+    });
+  }
+
+  if(headerSearchInput){
+    headerSearchInput.addEventListener('input', function(e){
+      filterProducts(e.target.value);
+      // Sync mobile search input
+      if(mobileSearchInput) mobileSearchInput.value = e.target.value;
     });
   }
 });

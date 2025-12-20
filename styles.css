@@ -701,9 +701,28 @@ main{padding:8px 0}
         box-shadow: 0 0 0 3px rgba(52, 102, 255, 0.15);
     }
 
-    /* Show mobile search filter on portrait phones only */
+    /* Header search input for mobile portrait */
+    .header-search-input{
+        display: none;
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+        background: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    .header-search-input:focus{
+        border-color: #3466ff;
+        box-shadow: 0 0 0 3px rgba(52, 102, 255, 0.15);
+    }
+
+    /* Show mobile search filters on portrait phones only */
     @media (max-width: 480px) and (orientation: portrait){
         .mobile-search-filter{ display: block; }
+        .header-search-input{ display: block; }
     }
 
     .header-utilities{
