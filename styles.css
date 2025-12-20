@@ -661,7 +661,7 @@ main{padding:8px 0}
         cursor: pointer;
         width: 40px;
         height: 40px;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         margin-left: 6px;
@@ -679,22 +679,26 @@ main{padding:8px 0}
     /* Mobile portrait search filter for products */
     .mobile-search-filter{
         display: none;
-        padding: 12px;
-        margin-bottom: 16px;
+        padding: 14px 12px;
+        margin-bottom: 18px;
+        background: #f9fafb;
+        border-radius: 10px;
     }
 
     .mobile-search-filter input{
         width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #e5e7eb;
+        padding: 12px 14px;
+        border: 1.5px solid #e5e7eb;
         border-radius: 8px;
         font-size: 0.95rem;
         outline: none;
+        background: #ffffff;
+        transition: all 0.3s ease;
     }
 
     .mobile-search-filter input:focus{
         border-color: #3466ff;
-        box-shadow: 0 0 0 3px rgba(52, 102, 255, 0.1);
+        box-shadow: 0 0 0 3px rgba(52, 102, 255, 0.15);
     }
 
     /* Show mobile search filter on portrait phones only */
