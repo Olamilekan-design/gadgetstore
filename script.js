@@ -3,9 +3,9 @@ function handleSearch(e){
   e.preventDefault();
   const form = e.target;
   const q = (form.q.value || '').trim().toLowerCase();
-  const cards = document.querySelectorAll('.product-card');
+  const cards = document.querySelectorAll('.product, .product-card');
   if(!q){
-    cards.forEach(c=>c.style.display='flex');
+    cards.forEach(c=>c.style.display='');
     return false;
   }
   cards.forEach(c=>{
@@ -33,3 +33,30 @@ function subscribeNewsletter(e){
 function highlightTerm(node, term){
   if(!term) return;
 }
+
+// Attach handlers on DOM ready: wire search forms and mobile search button
+document.addEventListener('DOMContentLoaded', function(){
+  // Attach submit handler to any search-bar forms
+  document.querySelectorAll('.search-bar').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      // If we're on the store page with product cards, run client-side filter
+      if(document.querySelectorAll('.product, .product-card').length){
+        handleSearch(e);
+      } else {
+        // fallback: allow form to submit (navigate to gadgetstore.html with query)
+      }
+    });
+  });
+
+  // Mobile header search toggle: open header-bottom and focus input
+  document.querySelectorAll('.header-search').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var hb = document.querySelector('.header-bottom');
+      if(!hb) return;
+      hb.classList.toggle('active');
+      var inp = hb.querySelector('input[type=search]');
+      if(inp){ setTimeout(function(){ inp.focus(); }, 60); }
+    });
+  });
+});

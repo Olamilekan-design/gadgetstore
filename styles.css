@@ -527,7 +527,7 @@ main{padding:8px 0}
     }
 
     .main-nav{
-        display: flex;
+        display: none;
         order: 3;
         width: 100%;
         padding: 8px 0;
@@ -547,6 +547,10 @@ main{padding:8px 0}
     .mobile-menu{
         display: block;
     }
+
+    /* Remove nav links on mobile: hide both main (inline) nav and the mobile dropdown links */
+    .main-nav{ display: none !important; }
+    .mobile-nav{ display: none !important; }
 
     .search-bar{
         width: 100%;
@@ -620,7 +624,7 @@ main{padding:8px 0}
     }
 
     .main-nav{
-        display: flex;
+        display: none;
         order: 2;
         width: 100%;
         margin: 8px 0 0 0;
@@ -714,6 +718,9 @@ main{padding:8px 0}
         border-radius: 10px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
+
+    /* Ensure mobile dropdown links hidden on smallest screens too */
+    .mobile-nav{ display: none !important; }
 
     .mobile-nav a{
         padding: 10px 12px;
@@ -817,7 +824,7 @@ main{padding:8px 0}
         /* Ensure mobile details/hamburger is hidden on desktop */
         .mobile-menu{ display: none !important; }
     }
-        margin: 8px 0;
+    
     }
 
     /* Featured section - mobile optimized */
